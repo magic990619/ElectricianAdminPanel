@@ -78,6 +78,11 @@ app.use('/auth', Auth);
 app.use('/category', Category);
 app.use('/content', Content);
 
+app.get('*', (req,res) =>{
+    console.log(req);
+    res.sendFile(path.join(__dirname+'/public/index.html'));
+});
+
 // app.use('/dashboard', Dashboard);
 //Routers
 // app.use('/user', User);
