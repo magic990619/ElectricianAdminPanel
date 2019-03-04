@@ -79,7 +79,7 @@ app.use('/category', Category);
 app.use('/content', Content);
 
 app.get('*', (req,res) =>{
-    console.log(req);
+    console.log("loading");
     res.sendFile(path.join(__dirname+'/public/index.html'));
 });
 
