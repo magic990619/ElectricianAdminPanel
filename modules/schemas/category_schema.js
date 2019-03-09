@@ -9,6 +9,9 @@ var categorySchema = new Schema({
     type: String,
     required: true,
   },
+  order: {
+    type: Number,
+  },
   code: {
     type: String,
   },
@@ -20,6 +23,9 @@ var categorySchema = new Schema({
   },
   subcount: {
     type: Number,
+  },
+  in_use: {
+    type: Boolean,
   },
   created_at:{
     type: Date,

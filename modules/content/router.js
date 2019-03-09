@@ -22,4 +22,8 @@ router.post('/saveQuestionContent', _main.saveQuestionContent);
 
 router.post('/removeContent', _main.removeContent);
 
+router.post('/addProblem', _main.addProblem);
+
+router.post('/removeProblem', _main.removeProblem);
+
 module.exports = router;

@@ -6,21 +6,25 @@ autoIncrement.initialize(mongoose.connection);
 
 var contentsSchema = new Schema({
     category_id: Number,
-    item_count: Number,
-    items: [
-        {
-            item_id: Number,
-            item_type: String,
-            title: String,
-            content: String,
-            answers: [{
-                answer_id: Number,
-                answer_string: String,
-                answer: String,
-                result: Boolean,
-            }]
-        }
-    ]
+    problem_count: Number,
+    problems: [{
+        problem_id: Number,
+        item_count: Number,
+        items: [
+            {
+                item_id: Number,
+                item_type: String,
+                title: String,
+                content: String,
+                answers: [{
+                    answer_id: Number,
+                    answer_string: String,
+                    answer_clause: String,
+                    result: Boolean,
+                }]
+            }
+        ]
+    }]
 },{
     usePushEach : true
 });

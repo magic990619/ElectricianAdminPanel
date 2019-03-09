@@ -6,14 +6,6 @@ const Auth = require('./modules/auth/router.js');
 const Category = require('./modules/category/router.js');
 const Content = require('./modules/content/router.js');
 
-//const Dashboard = require('./modules/dashboard/router.js');
-// const User = require('./modules/user/router.js');
-//const Setting = require('./modules/setting/router.js');
-// const Job = require('./modules/job/router.js');
-// const Chat = require('./modules/chat/router.js');
-// const Vehicle = require('./modules/vehicle/router.js');
-
-
 require('./config/db_connection.js');
 require('./config/passport.js');
 
@@ -53,13 +45,6 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
-// app.use(function(req, res, next) {
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
-
 app.use(cookieParser());
 
 // parse application/x-www-form-urlencoded 
@@ -82,26 +67,6 @@ app.get('*', (req,res) =>{
     console.log("loading");
     res.sendFile(path.join(__dirname+'/public/index.html'));
 });
-
-// app.use('/dashboard', Dashboard);
-//Routers
-// app.use('/user', User);
-
-
-//Routers
-// app.use('/job', Job);
-
-//Routers
-// app.use('/setting', Setting);
-
-//Routers
-// app.use('/vehicle', Vehicle);
-
-//Routers
-// app.use('/home', Login);
-
-//Routers
-// app.use('/chat', Chat);
 
 // FileUpload
 
