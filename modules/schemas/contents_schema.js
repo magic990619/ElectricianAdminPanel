@@ -20,6 +20,7 @@ var contentsSchema = new Schema({
                     answer_id: Number,
                     answer_string: String,
                     answer_clause: String,
+                    // answer_image: String,
                     result: Boolean,
                 }]
             }

@@ -45,6 +45,7 @@ accountSchema.methods.generateJwt = function() {
     accountStatus: this.account_status,
     avatar : this.avatar,
     role: this.role,
+    Pay: this.Pay,
     exp: parseInt(expiry.getTime() / 1000),
   }, "bAKVdqczerYAYKdMxsaBzbFUJU6ZvL2LwZuxhtpS");
 };

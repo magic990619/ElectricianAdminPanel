@@ -15,6 +15,7 @@ module.exports.register = async function (req, res) {
             email :     req.body.email || null,
             password:   hash,
             role:   req.body.role,
+            Pay: false,
             account_status: req.body.account_status
         }
 
