@@ -35,6 +35,8 @@ router.post('/addAccountData', _account.addAccountData);
 router.post('/resetPassword', _account.resetPassword);
 router.post('/changePayStatus', _account.changePayStatus);
 
+router.post('/setPayment', _account.setPayment);
+
 router.get('/access-token/:access_token', _read.access_token);
 
 

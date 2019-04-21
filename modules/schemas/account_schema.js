@@ -26,6 +26,12 @@ var accountSchema = new Schema({
   Pay: {
     type: Boolean
   },
+  PaymentType: {
+    type: String,
+  },
+  PayedDate: {
+    type: String,
+  },
   avatar: String
 },{
   usePushEach : true
@@ -36,6 +42,7 @@ accountSchema.plugin(passportLocalMongoose);
 
 accountSchema.methods.generateJwt = function() {
   var expiry = new Date();
+  // expiry.setMinutes(expiry.getMinutes() + 1);
   expiry.setHours(expiry.getHours() + 4);
 
   return jwt.sign({
@@ -46,7 +53,10 @@ accountSchema.methods.generateJwt = function() {
     avatar : this.avatar,
     role: this.role,
     Pay: this.Pay,
+    PaymentType: this.PaymentType,
+    PayedDate: this.PayedDate,
     exp: parseInt(expiry.getTime() / 1000),
+    // exp: 1000,
   }, "bAKVdqczerYAYKdMxsaBzbFUJU6ZvL2LwZuxhtpS");
 };
 

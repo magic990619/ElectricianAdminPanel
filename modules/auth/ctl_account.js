@@ -272,3 +272,22 @@ module.exports.changePayStatus = async function (req, res) {
         res.status(401).json({success: false, error: error});
     }
 }
+
+module.exports.setPayment = async function (req, res) {
+    try {
+        var user = await AccountSchema.findOne({_id: req.body.id});
+        user.Pay = req.body.Pay;
+        user.PaymentType = req.body.PaymentType;
+        user.PayedDate = req.body.PayedDate;
+        console.log(user);
+        AccountSchema.update({_id: req.body.id}, user, function (err, doc) {
+            if (err) {
+                res.status(401).json({success: false, error: err});
+            } else {
+                res.status(201).json({success: true, doc: user});
+            }
+        });
+    } catch(error) {
+        res.status(401).json({success: false, error: error});
+    }
+}
