@@ -86,8 +86,8 @@ app.get('/paypal', (req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://192.168.100.124:80/success",
-            "cancel_url": "http://192.168.100.124:80/cancel"
+            "return_url": "http://67.209.127.24:80/success",
+            "cancel_url": "http://67.209.127.24:80/cancel"
         },
         "transactions": [{
             "item_list": {
@@ -126,8 +126,8 @@ app.get('/paypalFull', (req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://192.168.100.124:80/successFull",
-            "cancel_url": "http://192.168.100.124:80/cancel"
+            "return_url": "http://67.209.127.24:80/successFull",
+            "cancel_url": "http://67.209.127.24:80/cancel"
         },
         "transactions": [{
             "item_list": {
