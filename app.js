@@ -65,7 +65,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 paypal.configure({
-    'mode': 'sandbox', //sandbox or live
+    'mode': 'live', //sandbox or live
     'client_id': 'AfMTFW2wPKd7kBLUKCXDudyPPs6DcIQMJEQOoIEpdt8N7bkK6b-nViaBhuagO_8eosVfcnCYQ9nrAyGj',
     'client_secret': 'ELYDaGPoBqAL0NI2E2mQ1xPdwwtyYDfG59A9M1yNDo5b51eJWhfAClJGcblUSCZplsdSCe0VCAjVv1-f'
 });
@@ -95,12 +95,12 @@ app.get('/paypal', (req, res) => {
                     "name": "item",
                     "sku": "item",
                     "price": "1.99",
-                    "currency": "USD",
+                    "currency": "AUD",
                     "quantity": 1
                 }]
             },
             "amount": {
-                "currency": "USD",
+                "currency": "AUD",
                 "total": "1.99"
             },
             "description": "This is the payment description."
@@ -135,12 +135,12 @@ app.get('/paypalFull', (req, res) => {
                     "name": "item",
                     "sku": "item",
                     "price": "4.99",
-                    "currency": "USD",
+                    "currency": "AUD",
                     "quantity": 1
                 }]
             },
             "amount": {
-                "currency": "USD",
+                "currency": "AUD",
                 "total": "4.99"
             },
             "description": "This is the payment description."
@@ -166,7 +166,7 @@ app.get("/success", (req,res) => {
         "payer_id": PayerID,
         "transactions": [{
             "amount": {
-                "currency": "USD",
+                "currency": "AUD",
                 "total": "1.99"
             }
         }]
@@ -191,7 +191,7 @@ app.get("/successFull", (req,res) => {
         "payer_id": PayerID,
         "transactions": [{
             "amount": {
-                "currency": "USD",
+                "currency": "AUD",
                 "total": "4.99"
             }
         }]
