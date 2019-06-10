@@ -66,8 +66,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 paypal.configure({
     'mode': 'live', //sandbox or live
-    'client_id': 'AfMTFW2wPKd7kBLUKCXDudyPPs6DcIQMJEQOoIEpdt8N7bkK6b-nViaBhuagO_8eosVfcnCYQ9nrAyGj',
-    'client_secret': 'ELYDaGPoBqAL0NI2E2mQ1xPdwwtyYDfG59A9M1yNDo5b51eJWhfAClJGcblUSCZplsdSCe0VCAjVv1-f'
+    'client_id': 'AQc7cPY5ji8CK827u6CkDoLriWqQU6rm_WbxdxnpbDajlrEWQUBlSG6ahm-tjMWH87FhcZWgz86I83rA',
+    'client_secret': 'EA52nNHlWCGQq1is_WdQFGGgEpnLQbnSD86uhv3lmt_3mukZuT1ccfjKXYSBPpL5aCYaa9zuVRkFtjVx'
 });
 
   
