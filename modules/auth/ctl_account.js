@@ -93,17 +93,16 @@ module.exports.getRestrictedAccountData = async function (req, res) {
     
 }
 
-module.exports.updateAccountData = function (req, res) {
+module.exports.updateAccountData = async function (req, res) {
     // console.log(req.body);
     var userInfo = {
         user_name: req.body.user.user_name,
         email: req.body.user.email,
         role: req.body.user.role,
         account_type: req.body.user.account_type,
-        membership: req.body.user.membership,
         account_status: req.body.user.account_status,
-        start_time: req.body.user.start_time,
-        end_time: req.body.user.end_time,
+        PaymentType: req.body.user.PaymentType,
+        PayedDate: req.body.user.PayedDate
     }
 
     var query = { '_id': req.body.user._id }
@@ -194,9 +193,9 @@ module.exports.addAccountData = async function (req, res) {
             password:   hash,
             role: req.body.newAccount.role == '' ? 'user' : req.body.newAccount.role,
             account_status:   req.body.newAccount.account_status == '' ? "Active" : req.body.newAccount.account_status,
-            start_time: req.body.newAccount.start_time,
-            end_time: req.body.newAccount.end_time,
-            Pay: false
+            Pay: false,
+            PaymentType: '',
+            PayedDate: ''
         }
         var accountDoc = await AccountSchema.findOne({'email': userInfo.email});
         if (accountDoc == null) {

@@ -14,8 +14,10 @@ module.exports.register = async function (req, res) {
             user_name: req.body.userName,
             email :     req.body.email || null,
             password:   hash,
-            role:   req.body.role,
+            role:   "user",
             Pay: false,
+            PaymentType: '',
+            PayedDate: '',
             account_status: req.body.account_status
         }
 
