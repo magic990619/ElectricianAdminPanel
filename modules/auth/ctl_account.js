@@ -102,7 +102,8 @@ module.exports.updateAccountData = async function (req, res) {
         account_type: req.body.user.account_type,
         account_status: req.body.user.account_status,
         PaymentType: req.body.user.PaymentType,
-        PayedDate: req.body.user.PayedDate
+        PayedDate: req.body.user.PayedDate,
+        Duration: req.body.user.Duration,
     }
 
     var query = { '_id': req.body.user._id }
@@ -195,7 +196,8 @@ module.exports.addAccountData = async function (req, res) {
             account_status:   req.body.newAccount.account_status == '' ? "Active" : req.body.newAccount.account_status,
             Pay: false,
             PaymentType: '',
-            PayedDate: ''
+            PayedDate: '',
+            Duration: ''
         }
         var accountDoc = await AccountSchema.findOne({'email': userInfo.email});
         if (accountDoc == null) {
@@ -278,6 +280,7 @@ module.exports.setPayment = async function (req, res) {
         user.Pay = req.body.Pay;
         user.PaymentType = req.body.PaymentType;
         user.PayedDate = req.body.PayedDate;
+        user.Duration = req.body.Duration;
         console.log(user);
         AccountSchema.update({_id: req.body.id}, user, function (err, doc) {
             if (err) {

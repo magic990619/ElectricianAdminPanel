@@ -103,7 +103,7 @@ app.get('/paypal', (req, res) => {
                 "currency": "AUD",
                 "total": "1.99"
             },
-            "description": "This is the payment description."
+            "description": "No Ads"
         }]
     };
     
@@ -134,16 +134,56 @@ app.get('/paypalFull', (req, res) => {
                 "items": [{
                     "name": "item",
                     "sku": "item",
-                    "price": "4.99",
+                    "price": "25",
                     "currency": "AUD",
                     "quantity": 1
                 }]
             },
             "amount": {
                 "currency": "AUD",
-                "total": "4.99"
+                "total": "25"
             },
-            "description": "This is the payment description."
+            "description": "Full App Access & No Ads(1 Year)"
+        }]
+    };
+    
+    
+    paypal.payment.create(create_payment_json, function (error, payment) {
+        if (error) {
+            throw error;
+        } else {
+            console.log("Create Payment Response");
+            console.log(payment);
+            res.redirect(payment.links[1].href);
+        }
+    });
+});
+
+app.get('/paypalMonth', (req, res) => {
+    var create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "redirect_urls": {
+            "return_url": "http://67.209.127.24:80/successMonth",
+            "cancel_url": "http://67.209.127.24:80/cancel"
+        },
+        "transactions": [{
+            "item_list": {
+                "items": [{
+                    "name": "item",
+                    "sku": "item",
+                    "price": "1.99",
+                    "currency": "AUD",
+                    "quantity": 1
+                }]
+            },
+            "amount": {
+                "currency": "AUD",
+                "total": "1.99"
+            },
+            "description": "Full App Access & No Ads(1 Month)"
         }]
     };
     
@@ -192,7 +232,32 @@ app.get("/successFull", (req,res) => {
         "transactions": [{
             "amount": {
                 "currency": "AUD",
-                "total": "4.99"
+                "total": "25"
+            }
+        }]
+    };
+        
+    paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+        if (error) {
+            console.log(error.response);
+            throw error;
+        } else {
+            console.log("Get Payment Response");
+            console.log(JSON.stringify(payment));
+            res.render('success');
+        }
+    });
+});
+
+app.get("/successMonth", (req,res) => {
+    var PayerID = req.query.PayerID;
+    var paymentId = req.query.paymentId;
+    var execute_payment_json = {
+        "payer_id": PayerID,
+        "transactions": [{
+            "amount": {
+                "currency": "AUD",
+                "total": "1.99"
             }
         }]
     };

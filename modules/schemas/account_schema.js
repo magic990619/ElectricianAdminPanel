@@ -32,6 +32,9 @@ var accountSchema = new Schema({
   PayedDate: {
     type: String,
   },
+  Duration: {
+    type: String,
+  },
   avatar: String
 },{
   usePushEach : true
