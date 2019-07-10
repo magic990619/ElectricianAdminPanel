@@ -6,12 +6,38 @@ var bcrypt = require('bcryptjs');
 
 module.exports.getAllAccountData = async function (req, res) {
     try {
+        var accounts = await AccountSchema.find({"Pay": true}, {}, {});
+        var today = new Date().toISOString();
+        var today_year = parseInt(today.slice(0, 4));
+        var today_month = parseInt(today.slice(5, 7));
+        var today_date = parseInt(today.slice(8, 10));
+        accounts.forEach(async account => {
+            var account_pay_year = parseInt(account.PayedDate.slice(0, 4));
+            var account_pay_month = parseInt(account.PayedDate.slice(5, 7));
+            var account_pay_date = parseInt(account.PayedDate.slice(8, 10));
+            if (account.Duration == "1 year") {
+                if ((today_year > (account_pay_year + 1)) || ((today_year == (account_pay_year + 1)) && ((today_month > account_pay_month) || ((today_month == account_pay_month) && (today_date > account_pay_date))))) {
+                    account.Pay = false;
+                    account.Duration = "Expired";
+                    await AccountSchema.update({'_id': account._id}, account);
+                }
+            } else if (account.Duration == "1 month") {
+                if ((today_year > (account_pay_year + 1)) ||
+                    ((today_year == (account_pay_year + 1)) && ((today_month != 1) || (account_pay_month != 12))) ||  
+                    (((today_year == (account_pay_year + 1))) && ((today_month == 1) && (account_pay_month == 12) && (today_date > account_pay_date))) || 
+                    ((today_year == account_pay_year) && ((today_month > (account_pay_month + 1)) || ((today_month == (account_pay_month + 1)) && (today_date > account_pay_date))))) {
+                        account.Pay = false;
+                        account.Duration = "Expired";
+                        await AccountSchema.update({'_id': account._id}, account);
+                }
+            }
+        })
         AccountSchema.find( {} , function (err, doc) {
             if (err) {
                 console.log(err);
               res.status(201).json({success: false, message: err});
             }else{
-                console.log(doc);
+                // console.log(doc);
                 res.status(201).json({success: true, doc: doc});
             }
         });
@@ -260,7 +286,6 @@ module.exports.changePayStatus = async function (req, res) {
     try {
         var newUser= await AccountSchema.findOne({_id: req.body.key});
         newUser.Pay = req.body.value;
-        console.log("aaa");
         console.log(newUser);
         AccountSchema.update({_id: req.body.key}, newUser, function (err, doc) {
             if (err) {
