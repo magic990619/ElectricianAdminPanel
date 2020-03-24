@@ -4,6 +4,9 @@ var cors = require('cors')
 const paypal = require('paypal-rest-sdk');
 const engines = require('consolidate');
 
+var fs = require('fs');
+var https = require('https');
+
 const Auth = require('./modules/auth/router.js');
 const Category = require('./modules/category/router.js');
 const Content = require('./modules/content/router.js');
@@ -326,7 +329,13 @@ app.use(function (err, req, res, next) {
 
 // web server 8080
 
-app.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
+https.createServer({
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('certificate.pem')
+}, app)
+.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
+
+// app.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
 
 // Socket Server Engine
 
