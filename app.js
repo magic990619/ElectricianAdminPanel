@@ -329,13 +329,13 @@ app.use(function (err, req, res, next) {
 
 // web server 8080
 
-https.createServer({
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('certificate.pem')
-}, app)
-.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
+// https.createServer({
+//     key: fs.readFileSync('key.pem'),
+//     cert: fs.readFileSync('certificate.pem')
+// }, app)
+// .listen(443, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 443 --'));
 
-// app.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
+app.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
 
 // Socket Server Engine
 
