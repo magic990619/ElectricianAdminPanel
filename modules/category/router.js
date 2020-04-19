@@ -14,7 +14,7 @@ router.post('/getAllCategories', _main.getAllCategories);
 
 router.post('/getCategoriesByCode', _main.getCategoriesByCode);
 
-router.post('./getCategoryNameByCode', _main.getCategoryNameByCode);
+router.post('/getCategoryNameByCode', _main.getCategoryNameByCode);
 
 router.post('/addNewCategory', _main.addNewCategory);
 
