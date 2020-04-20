@@ -335,7 +335,7 @@ https.createServer({
 }, app)
 .listen(443, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 443 --'));
 
-// app.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
+app.listen(80, () => console.log('-- [ ELECTRICIAN NODE ] SERVER STARTED LISTENING ON PORT 80 --'));
 
 // Socket Server Engine
 
