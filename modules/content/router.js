@@ -16,6 +16,8 @@ router.post('/addContent', _main.addContent);
 
 router.post('/saveTextContent', _main.saveTextContent);
 
+router.post('/saveVideoContent', _main.saveVideoContent);
+
 router.post('/saveImageContent', _main.saveImageContent);
 
 router.post('/saveQuestionContent', _main.saveQuestionContent);

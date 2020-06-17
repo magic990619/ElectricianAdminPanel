@@ -69,6 +69,29 @@ module.exports.saveTextContent = async function (req, res) {
     }
 }
 
+module.exports.saveVideoContent = async function (req, res) {
+    try {
+        var newContent = req.body.content;
+        var category_id = req.body._id;
+        var problem_id = req.body.content.problem_id;
+        var content = await ContentsSchema.findOne({category_id: category_id});
+        content.problems.forEach(problem => {
+            if (problem.problem_id == problem_id) {
+                problem.items.forEach(element => {
+                    if (element.item_id === newContent._id ) {
+                        element.title = newContent.title;
+                        element.content = newContent.videoUrl;
+                    }
+                });
+            }            
+        })
+        var contents = await ContentsSchema.update({category_id: category_id}, content);
+        res.status(201).json({success: true, doc: contents});
+    } catch (error) {
+        res.status(401).json({success: false, error: error});
+    }
+}
+
 module.exports.saveImageContent = async function (req, res) {
     try {
         var newContent = req.body.content;
